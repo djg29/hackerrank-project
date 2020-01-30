@@ -5,7 +5,7 @@ configuration:
     - src/test/*
   scoring:
     command: mvn clean test; cat target/surefire-reports/TestSuite.txt
-    files: [target/surefire-reports/TEST-com.nike.trade.StockTradeApiControllerSpec.xml]
+    files: [target/surefire-reports/TEST-com.nike.interview.StockTradeApiControllerSpec.xml]
     testcase_weights:
       "StockTradeAPiController getOrderRoute should return an order": 0.40
       "StockTradeAPiController getOrderRoute should return not found for an invalid order": 0.20
