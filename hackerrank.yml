@@ -1,0 +1,19 @@
+version: 1.0
+configuration:
+  has_webserver: true
+  readonly_paths:
+    - src/test/*
+  scoring:
+    command: mvn test
+    files: [target/surefire-reports/TEST-com.nike.trade.StockTradeApiControllerSpec.xml]
+    testcase_weights:
+      "StockTradeAPiController getOrderRoute should return an order": 0.40
+      "StockTradeAPiController getOrderRoute should return not found for an invalid order": 0.20
+      "StockTradeAPiController createOrderRoute should return an order": 0.40
+  ide_config:
+    default_open_files:
+      - "src/test/scala/com/nike/trade/StockTradeApiControllerSpec.scala"
+    project_menu:
+      run: "mvn package exec:java -Dexec.mainClass=com.nike.interview.StockTradeApplication"
+      install: "mvn clean install"
+      test: "mvn clean test; cat target/customReports/result.txt"
