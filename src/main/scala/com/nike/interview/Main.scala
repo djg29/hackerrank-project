@@ -20,7 +20,7 @@ class StockTradeApplication {
 
   val routes = new StockTradeApiController(repo).route
 
-  val bindingFuture = Http().bindAndHandle(routes, "localhost", 9099)
+  val bindingFuture = Http().bindAndHandle(routes, "localhost", 8080)
 
   println("Server online")
   StdIn.readLine()
