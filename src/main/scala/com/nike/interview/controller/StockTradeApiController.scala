@@ -10,6 +10,7 @@ import com.nike.interview.repository.{DuplicateException, ItemRepository}
 import spray.json.DefaultJsonProtocol._
 
 import scala.concurrent.Future
+import scala.util.{Failure, Success}
 
 case class StockTradeApiController(repo: ItemRepository) {
 
@@ -43,7 +44,10 @@ case class StockTradeApiController(repo: ItemRepository) {
             entity(as[Trade]) { transcation =>
               val saved: Future[Done] = repo.saveItem(transcation)
               onComplete(saved) {
-                _ => complete(StatusCodes.Created)
+                case Success(u) => {
+                  complete(StatusCodes.Created)
+                }
+                case Failure(err) => complete(StatusCodes.BadRequest)
               }
             }
           }
