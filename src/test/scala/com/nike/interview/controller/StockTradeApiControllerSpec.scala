@@ -21,10 +21,10 @@ import DefaultJsonProtocol._
 class StockTradeApiControllerSpec extends AnyFunSpec
   with Matchers
   with ScalaFutures
-  with ScalatestRouteTest
   with MockitoSugar
   with SprayJsonSupport
-  with Harness {
+  with Harness
+  with ScalatestRouteTest {
 
   val mockRepo = mock[ItemRepository]
   val controller = new StockTradeApiController(mockRepo)
