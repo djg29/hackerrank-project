@@ -8,7 +8,7 @@ configuration:
     files: [target/surefire-reports/TEST-com.nike.interview.repository.ItemRepositorySpec.xml]
   ide_config:
     default_open_files:
-      - "src/test/scala/com/nike/interview/controller/StockTradeApiControllerSpec.scala"
+      - "src/test/scala/com/nike/interview/repository/ItemRepositorySpec.scala"
     project_menu:
       run: "mvn package exec:java -Dexec.mainClass=com.nike.interview.StockTradeApplication"
       install: "mvn clean install"
