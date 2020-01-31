@@ -5,14 +5,20 @@ configuration:
     - src/test/*
   scoring:
     command: mvn clean test; cat target/surefire-reports/TestSuite.txt
-    files: [target/surefire-reports/TEST-com.nike.interview.StockTradeApiControllerSpec.xml]
+    files: [target/surefire-reports/TEST-com.nike.interview.controller.StockTradeApiControllerSpec.xml,
+    target/surefire-reports/TEST-com.nike.interview.repository.ItemRepositorySpec.xml]
     testcase_weights:
-      "StockTradeAPiController getOrderRoute should return an order": 0.40
-      "StockTradeAPiController getOrderRoute should return not found for an invalid order": 0.20
-      "StockTradeAPiController createOrderRoute should return an order": 0.40
+      "StockTradeAPiController getTradesRoute should return a transaction": 0.20
+      "StockTradeAPiController getTradesRoute should return not found for an invalid transaction": 0.10
+      "StockTradeAPiController createTradeRoute should create a trade": 0.20
+      "StockTradeAPiController createTradeRoute should create a trade": 0.10
+      "Repository should return user trade details for valid user": 0.10
+      "Repository should not return for invalid user": 0.10
+      "Repository should create a transaction": 0.10
+      "Repository should throw exception for duplicate transaction": 0.10
   ide_config:
     default_open_files:
-      - "src/test/scala/com/nike/trade/StockTradeApiControllerSpec.scala"
+      - "src/test/scala/com/nike/interview/controller/StockTradeApiControllerSpec.scala"
     project_menu:
       run: "mvn package exec:java -Dexec.mainClass=com.nike.interview.StockTradeApplication"
       install: "mvn clean install"
