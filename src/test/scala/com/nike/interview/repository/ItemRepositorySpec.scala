@@ -44,9 +44,8 @@ class ItemRepositorySpec extends AnyFunSpec
     }
 
     it("should throw exception for duplicate transaction") {
-      whenReady(repo.saveItem(duplicateTrade)) { result =>
-        result mustBe a [DuplicateException]
-      }
+      val future = repo.saveItem(duplicateTrade)
+      future.failed.futureValue mustBe a [DuplicateException]
     }
 
   }

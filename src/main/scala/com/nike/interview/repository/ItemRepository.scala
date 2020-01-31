@@ -24,25 +24,23 @@ class ItemRepositoryImpl(implicit ec: ExecutionContext) extends ItemRepository {
     trades.map(i => i.flatMap(id => tradeMap.get(id)))
   }
 
-  def saveItem(trade: Trade): Future[Done] = {
-    println(userMap)
-    println(tradeMap)
-    val tradeIds = userMap.get(trade.user.id)
-    println(tradeIds)
-    val isDuplicate = tradeIds.map(_.contains(trade.id))
-    val result = isDuplicate match {
-      case Some(x) => if(x) throw new DuplicateException else {
+  def saveItem(trade: Trade): Future[Done] = Future {
+    val tradeIdsOfUser = userMap.get(trade.user.id)
+    val tradeIds = tradeMap.keys.toList
+    val isDuplicate = tradeIds.contains(trade.id)
+    if(isDuplicate) {
+      throw new DuplicateException
+    }
+    val result = if (tradeIdsOfUser.isDefined)
+    {
         tradeMap.put(trade.id, trade)
-        trade.id :: tradeIds.get
-      }
-      case None => {
+        trade.id :: tradeIdsOfUser.get
+    } else {
         tradeMap.put(trade.id, trade)
         trade.id :: Nil
-      }
     }
-    userMap.put(trade.user.id, result)
-    Thread.sleep(1000)
-    Future { Done }
+    val res = userMap.put(trade.user.id, result)
+    Done
   }
 
 }
