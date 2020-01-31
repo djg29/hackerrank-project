@@ -69,7 +69,6 @@
       <version>2.6.3</version>
       <scope>test</scope>
     </dependency>
-    <dependency> <groupId>com.vladsch.flexmark</groupId> <artifactId>flexmark-util</artifactId> <version>0.34.0</version> </dependency>
   </dependencies>
 
   <build>
