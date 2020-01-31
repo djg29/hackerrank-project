@@ -2,11 +2,10 @@ version: 1.0
 configuration:
   has_webserver: true
   readonly_paths:
-    - src/test/*
+    - src/test/scala/com/nike/interview/helper/*
   scoring:
     command: mvn clean test; cat target/surefire-reports/TestSuite.txt
-    files: [target/surefire-reports/TEST-com.nike.interview.controller.StockTradeApiControllerSpec.xml,
-    target/surefire-reports/TEST-com.nike.interview.repository.ItemRepositorySpec.xml]
+    files: [target/surefire-reports/TEST-com.nike.interview.repository.ItemRepositorySpec.xml]
   ide_config:
     default_open_files:
       - "src/test/scala/com/nike/interview/controller/StockTradeApiControllerSpec.scala"
